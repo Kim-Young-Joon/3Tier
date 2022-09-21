@@ -39,7 +39,7 @@
     function del(num) {
         let target = document.getElementById('del'+num).innerHTML;
         alert('삭제 대상 seq : ' + target)
-        let delUrl = "http://localhost:5000/del/" + target
+        let delUrl = '/del/' + seq
         location.href= delUrl
     }
 </script>
