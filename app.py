@@ -1,13 +1,12 @@
-from flask import Flask, render_template, jsonify, request, redirect, url_for
-import requests, socket
-import json
+from flask import Flask, render_template, request, redirect, url_for
+import requests, socket, json
 
-url = "http://backend-lb:8080"
+# TODO
+# 최종 수정시, 아래 링크로 URL 수정 및 맨 아래 port=35001 로 포트 열기
+url = "http://192.168.56.102:30080"
+# url = "http://backend-lb:8080"
 
 app = Flask(__name__)
-# app.config['JSON_AS_ASCII'] = False
-# flaks - 기본 utf8 인코딩이 아닌 ascii 인코딩 형태로 데이터를 출력
-# -> 하지 않겠다
 
 # 메인 화면
 @app.route('/')
@@ -38,10 +37,18 @@ def save():
     print('서버 응답 완료')
     print('입력값 확인 : ', test11)
     print('요청 url : ', test11.url)
-    print('요청 header', test11.headers)
+    print('요청 header : ', test11.headers)   
     print('내용 : ', test11._content)
-
-    return redirect(url_for('main'))
+    print('확인 : ', type(test11.text))
+    # print('req 확인 : ', type(test11['data']['seq']))
+    
+    # 들어오는 값이 str -> json 형식으로 변환 후 원하는 데이터 추출 (seq)
+    mySeq = json.loads(test11.text)
+    print('두번째 확인 : ', mySeq['data']['seq'])
+    
+    seq = mySeq['data']['seq']
+    
+    return redirect('/' + str(seq))
 
 # 일기 전체 목록 날짜 내림차순으로 로드
 @app.route('/list')
@@ -63,8 +70,6 @@ def detail(seq):
         diary = diarylist['data']['result'],
         backHost = diarylist['data']['hostname'],
         frontHost = frontHost)
-# 세부 페이지 내부에서 hostname 보여달라
-# -> load balancing 되는 것을 보여주기 위함
 
 # 일기 삭제
 @app.route('/del/<seq>')
@@ -83,14 +88,4 @@ def delDiary(seq):
 
 # 모든 외부 접속을 허용함 (포트는 기본 5000)
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=35001)
-
-
-# 화면
-# 1. 메인화면 - 전체 목록
-# 2. 일기 작성 화면
-# 3. 하나의 일기 내용 상세 보기 화면
-# 삭제 버튼은 전체와 개별 화면 둘 다
-
-# 35001 포트 열기
-# module 사용하지 않는 것 정리
+    app.run(host='0.0.0.0')
