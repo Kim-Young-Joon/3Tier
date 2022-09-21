@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>상세보기</title>
+    <link rel="icon" href="data:,">
+</head>
+<body>
+    <h1>detail view</h1>
+    <h3>backend-hostname : {{backHost}}</h3>
+    <h3>frontend-hostname : {{frontHost}}</h3>
+    <button onclick="history.back()">목록으로</button>
+    <button id="btnDel" onclick="del('{{seq}}')">삭제</button>
+    <div>
+        <div>
+            <span>글번호 : </span>
+            <span>{{diary['seq']}}</span>
+        </div>
+        <div>
+            <span>작성일 : </span>
+            <span>{{diary['createDate']}}</span>
+        </div>
+        <div>
+            <span>제목 : </span>
+            <span>{{diary['title']}}</span>
+        </div>
+        <div>
+            <span>내용 : </span>
+            <span>{{diary['content']}}</span>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    function del(seq) {
+        // let target = document.getElementById('del'+num).innerHTML;
+        alert('삭제 대상 seq : ' + seq)
+        let delUrl = "http://localhost:5000/del/" + seq
+        location.href= delUrl
+    }
+</script>

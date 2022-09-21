@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>list 보기</title>
+    <link rel="icon" href="data:,">
+</head>
+<body>
+    <h1>list</h1>
+    <a href="/write">일기 작성</a>
+
+    <table>
+        <thead>
+            <th>번호</th>
+            <th>no</th>
+            <th>title</th>
+            <th>date</th>
+            <th>삭제</th>
+        </thead>
+        <tbody>
+            {% for list in lists %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td id="del{{loop.index}}">{{list['seq']}}</td>
+                    <td><a href="{{list['seq']}}">{{list['title']}}</a></td>
+                    <td>{{list['createDate']}}</td>
+                    <td><button id="btnDel{{loop.index}}" onclick="del('{{loop.index}}')">삭제</button></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+<script>
+    function del(num) {
+        let target = document.getElementById('del'+num).innerHTML;
+        alert('삭제 대상 seq : ' + target)
+        let delUrl = "http://localhost:5000/del/" + target
+        location.href= delUrl
+    }
+</script>
