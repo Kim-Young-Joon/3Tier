@@ -1,4 +1,3 @@
-from turtle import forward
 from flask import Flask, render_template, jsonify, request, redirect, url_for
 import requests, socket
 import json
@@ -84,7 +83,8 @@ def delDiary(seq):
 
 # 모든 외부 접속을 허용함 (포트는 기본 5000)
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=35001)
+
 
 # 화면
 # 1. 메인화면 - 전체 목록
@@ -92,4 +92,5 @@ if __name__ == "__main__":
 # 3. 하나의 일기 내용 상세 보기 화면
 # 삭제 버튼은 전체와 개별 화면 둘 다
 
-# hostname (frontend) 형태 맞는지?
+# 35001 포트 열기
+# module 사용하지 않는 것 정리
