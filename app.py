@@ -2,7 +2,7 @@ from flask import Flask, render_template, jsonify, request, redirect, url_for
 import requests, socket
 import json
 
-url = "http://192.168.56.102:30080"
+url = "http://backend-lb:8080"
 
 app = Flask(__name__)
 # app.config['JSON_AS_ASCII'] = False
