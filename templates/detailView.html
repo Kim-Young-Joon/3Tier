@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>상세보기</title>
     <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="/static/common.css">
 </head>
 <body>
     <h1>detail view</h1>
@@ -34,7 +35,7 @@
 <script>
     function del(seq) {
         // let target = document.getElementById('del'+num).innerHTML;
-        alert('삭제 대상 seq : ' + seq)
+        // alert('삭제 대상 seq : ' + seq)
         let delUrl = '/del/' + seq
         location.href= delUrl
     }
