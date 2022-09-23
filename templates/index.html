@@ -11,18 +11,31 @@
         #con {
             position: absolute;
             top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            left: 47%;
+            transform: translate(-65%, -50%);
             z-index: 1;
-          }
+        }
+        #con_test {
+            margin-left: 40px;
+            width: 1000px;
+            height: 650px;
+            background: url('/static/img/index_back.png') no-repeat center;
+            background-size: cover;
+        }
     </style>
 </head>
 <body>
-    <div class="container p-5 my-5 border" id="con">
-        <h2>소나기</h2>
+    <div id="con_test">
+    <div id="con">
         <button onclick="location.href='/write'" class="w-btn-neon2">일기작성</button>
         <button onclick="location.href='/list'" class="w-btn-neon2">목록보기</button>
     </div>
+    </div>
+    <!-- <div class="container p-5 my-5 border" id="con"> -->
+        <!-- <h2>소나기</h2> -->
+        <!-- <button onclick="location.href='/write'" class="w-btn-neon2">일기작성</button>
+        <button onclick="location.href='/list'" class="w-btn-neon2">목록보기</button>
+    </div> -->
     
 </body>
 </html>
