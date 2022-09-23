@@ -17,15 +17,15 @@
     <div class="container p-5 my-5 border ">
     <table>
         <colgroup>
-            <col width="7%">
-            <col width="5%">
-            <col width="50%">
+            <col width="10%">
+            <!-- <col width="5%"> -->
+            <col width="*">
             <col width="20%">
             <col width="20%">
         </colgroup>
         <thead>
-            <th>번호</th>
             <th>no</th>
+            <!-- <th>no</th> -->
             <th>title</th>
             <th>date</th>
             <th>삭제</th>
@@ -34,9 +34,9 @@
             {% for list in lists %}
                 <tr>
                     <td>{{loop.index}}</td>
-                    <td id="del{{loop.index}}">{{list['seq']}}</td>
+                    <td style="display: none;" id="del{{loop.index}}">{{list['seq']}}</td>
                     <td><a href="{{list['seq']}}">{{list['title']}}</a></td>
-                    <td>{{list['createDate']}}</td>
+                    <td>{{list['createDate'].split("T")[0][2:]}}</td>
                     <td><button id="btnDel{{loop.index}}" onclick="del('{{loop.index}}')">삭제</button></td>
                 </tr>
             {% endfor %}

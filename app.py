@@ -54,9 +54,6 @@ def save():
 @app.route('/list')
 def list():
     lists = requests.get(url + '/list').json()
-    
-    print(lists)
-    
     return render_template('/list.html', lists = lists['data']['results'])
 
 # 특정한 일련번호 일기 로드
@@ -68,7 +65,6 @@ def detail(seq):
     return render_template("/detailView.html",
         seq = seq,
         diary = diarylist['data']['result'],
-        backHost = diarylist['data']['hostname'],
         frontHost = frontHost)
 
 # 일기 삭제
